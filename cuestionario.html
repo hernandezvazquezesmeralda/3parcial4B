@@ -1,0 +1,416 @@
+<html lang="en">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet"  href="style.css">
+<link rel="stylesheet" href="footer.css">
+<link href="https://fonts.cdnfonts.com/css/small-dot-digital-7" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/pradyse" rel="stylesheet">
+
+<title>index</title>
+</head>
+<body>
+<div style="margin:24px">
+    <nav class="navbar navbar-light" style="background-color:#000000;">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Inicio</a>
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="formulario.html">Formulario</a>
+                </li>
+                <li>
+                    <a href="resultado.html">Resultado</a>
+                </li>
+                <li>
+                    <a href="perfil.html">Contacto</a>
+                </li>
+                <li>
+                    <a href="apimovie.html">Peliculas</a>
+                </li>
+                <li class="active">
+                    <a href="cuestionario.html">Cuestionario</a>
+                </li>
+                <li>
+                    <a href="calculadora.html">Calculadora</a>
+                </li>
+                <li>
+                    <a href="calculadora fisica.html">Fisica</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<style>
+    body {
+        background-image: linear-gradient(to left ,purple,blue,white);
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        margin: 0;
+    }
+
+    .quiz-container {
+        outline: #33FF34 1px;
+        background-color: #3D348B;
+        border-radius: 10px;
+        box-shadow: 0 0 10px 2px #3D348B;
+        width: 700px;
+        overflow: hidden;
+    }
+
+    .quiz-header {
+        padding: 4rem;
+    }
+
+    h2 {
+        padding: 1rem;
+        text-align: center;
+        margin: 0;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    ul li label {
+        cursor: pointer;
+    }
+
+    button {
+        background-color: #F6F6F6;
+        color: #6A33FF;
+        border: none;
+        display: block;
+        width: 100%;
+        cursor: pointer;
+        font-size: 15px;
+        font-family: verdana, Geneva;
+        padding: 15px;
+    }
+
+    button:hover {
+        background-color: #7a74af;
+    }
+
+    button:focus {
+        outline: none;
+        background-color: #822f8e;
+    }
+</style>
+<div class="quiz-container" id="quiz">
+  <div class="quiz-header">
+    <div class="image-container">
+      <img src="" alt="Imagen" id="question-image" style="width:250px; height:200px;">
+    </div>
+    <h2 id="question">Question text</h2>
+    <ul>
+      <li>
+        <input type="radio" name="answer" id="a" class="answer">
+        <label for="a" id="a_text">Question</label>
+      </li>
+      <li>
+        <input type="radio" name="answer" id="b" class="answer">
+        <label for="b" id="b_text">Question</label>
+      </li>
+      <li>
+        <input type="radio" name="answer" id="c" class="answer">
+        <label for="c" id="c_text">Question</label>
+      </li>
+      <li>
+        <input type="radio" name="answer" id="d" class="answer">
+        <label for="d" id="d_text">Question</label>
+      </li>
+    </ul>
+  </div>
+  <button id="submit">Siguiente</button>
+</div>
+
+<script>
+const quizData = [
+  {
+    question: "¿Quien es el mejor amigo del Capitan America?",
+    image: "3.jpg",
+    a: "IronMan",
+    b: "Bucky",
+    c: "Spiderman",
+    d: "Hulk",
+    correct: "b",
+  },
+  {
+    question: "¿Quien es el enemigo de IronMan",
+    image: "4.jpg",
+    a: "Doctor Strange",
+    b: "Loki",
+    c: "Vision",
+    d: "Ultron",
+    correct: "d",
+  },
+  {
+    question: "Quien mata a Vision?",
+    image: "1.jpg",
+    a: "Wanda",
+    b: "Hulk",
+    c: "Thanos",
+    d: "Eros",
+    correct: "c",
+  },
+  {
+    question: "Quien es Black Widow?",
+    image: "5.jpg",
+    a: "Natasha Romanof",
+    b: "Wanda",
+    c: "Capitana",
+    d: "Tu",
+    correct: "a",
+  },
+   {
+    question: "¿Cuantas peliculas de Marvel hay? ",
+    image: "6.jpg",
+    a: "40",
+    b: "60",
+    c: "100",
+    d: " 25",
+    correct: "a",
+  },
+  {
+    question: "¿Cuántos superhéroes de Marvel? ",
+    image: "7.jpg",
+    a: "150",
+    b: "8,000",
+    c: "7,000",
+    d: "1500",
+    correct: "b",
+  },
+    {
+    question: " ¿En qué año se estrenó la primera película de Iron Man? ",
+    image: "8.jpg",
+    a: "2005",
+    b: "2010",
+    c: "2008",
+    d: "2012",
+    correct: "c",
+  },
+    {
+    question: "¿Cómo se llama el martillo de Thor? ",
+    image: "9.jpg",
+    a: "Vanir",
+    b: "Norn",
+    c: "Aesir",
+    d: "Mjolnir",
+    correct: "d",
+  },
+   {
+    question: " Los Flerkens son una raza de alienígenas extremadamente peligrosos que se parece a qué. ",
+    image: "10.jpg",
+    a: "Gatos",
+    b: "Patos",
+    c: "reptiles",
+    d: "Mapaches",
+    correct: "a",
+  },
+    {
+    question: "Antes de convertirse en Visión, ¿cómo se llama el mayordomo de inteligencia artificial de Iron Man? ",
+    image: "11.jpg",
+    a: "Homero",
+    b: "Jarvis",
+    c: "Alfredo",
+    d: "Marvin",
+    correct: "b",
+  },
+   {
+    question: "¿Cuál es el verdadero nombre de la Pantera Negra? ",
+    image: "12.jpg",
+    a: "M baku",
+    b: "N jadaka",
+    c: "N jobu",
+    d: "T challa",
+    correct: "d",
+  },
+   {
+    question: "¿Quien es Hawkeye? ",
+    image: "13.jpg",
+    a: "Scott",
+    b: "Thor",
+    c: "Tony stark",
+    d: "Clin barton",
+    correct: "d",
+  },
+ {
+    question: "¿Qué palabra pronuncia Tony que hace que Steve diga Lenguaje ",
+    image: "14.jpg",
+    a: "Mierda",
+    b: "Estupido",
+    c: "Tonto",
+    d: "Menso",
+    correct: "a",
+  },
+   {
+    question: "¿Qué tipo de médico es Stephen Strange? ",
+    image: "15.jpg",
+    a: "Cardiotoracico",
+    b: "Neurocirujano",
+    c: "Trauma",
+    d: "Plastico",
+    correct: "b",
+  },
+   {
+    question: "¿Quién chasquea los dedos en avengers endgame para vencer a thanos?",
+    image: "16.jpg",
+    a: "Hulk",
+    b: "Gamora",
+    c: "Iron Man",
+    d: "Capitana Marvel",
+    correct: "c",
+  },
+   {
+    question: "¿Quién chasquea los dedos para traer a todos de regreso?",
+    image: "17.jpg",
+    a: "Tony Stark",
+    b: "Peter quill",
+    c: "Thor",
+    d: "Hulk",
+    correct: "d",
+  },
+ {
+    question: "¿Cuántos años pasaron desde infinity war a avengers endgame?",
+    image: "18.jpg",
+    a: " 1 año",
+    b: "2 años",
+    c: "4 años",
+    d: "5 años",
+    correct: "d",
+  },
+
+ {
+    question: "¿Como se llama la hermana de thor?",
+    image: "19.jpg",
+    a: "Helios",
+    b: "Hela",
+    c: "Loki",
+    d: "Hel",
+    correct: "b",
+  },
+ {
+    question: "¿Cómo se llaman los hijos de wanda maximoff?",
+    image: "20.jpg",
+    a: "Bill y Dilli",
+    b: "Tom y Dali",
+    c: "Billy y Tommy",
+    d: "Beto y Jesus",
+    correct: "c",
+  },
+ {
+    question: "¿Dónde se encontraba la base llamada red room en black widow?",
+    image: "21.jpg",
+    a: "En el espacio",
+    b: "En una estrella ",
+    c: "En asgard",
+    d: "En el cielo",
+    correct: "d",
+  },
+
+];
+
+const quiz = document.getElementById('quiz');
+const answerEls = document.querySelectorAll('.answer');
+const questionEl = document.getElementById('question');
+const a_text = document.getElementById('a_text');
+const b_text = document.getElementById('b_text');
+const c_text = document.getElementById('c_text');
+const d_text = document.getElementById('d_text');
+const imageEl = document.getElementById('question-image');
+const submitBtn = document.getElementById('submit');
+
+let currentQuiz = 0;
+let score = 0;
+
+loadQuiz();
+
+function loadQuiz() {
+  deselectAnswers();
+
+  const currentQuizData = quizData[currentQuiz];
+
+  questionEl.innerText = currentQuizData.question;
+  a_text.innerText = currentQuizData.a;
+  b_text.innerText = currentQuizData.b;
+  c_text.innerText = currentQuizData.c;
+  d_text.innerText = currentQuizData.d;
+  imageEl.src = currentQuizData.image;
+}
+
+function deselectAnswers() {
+  answerEls.forEach((answerEl) => (answerEl.checked = false));
+}
+
+function getSelected() {
+  let answer;
+
+  answerEls.forEach((answerEl) => {
+    if (answerEl.checked) {
+      answer = answerEl.id;
+    }
+  });
+
+  return answer;
+}
+
+submitBtn.addEventListener('click', () => {
+  const answer = getSelected();
+
+  if (answer) {
+    if (answer === quizData[currentQuiz].correct) {
+      score++;
+    }
+
+    currentQuiz++;
+
+    if (currentQuiz < quizData.length) {
+      loadQuiz();
+    } else {
+      quiz.innerHTML = `
+        <h2>Respondiste ${score}/${quizData.length} preguntas correctamente</h2>
+        <button onclick="location.reload()">Volver a intentar</button>
+      `;
+    }
+  }
+});
+</script>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h2>Contactame</h2>
+                <p>Si estás interesado en contactarme, puedes hacerlo a través de cualquiera de nuestras redes sociales:</p>
+                <div class="contact-links">
+                    <a href="https://www.facebook.com/miperfil" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/miperfil" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.twitter.com/miperfil" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.snapchat.com/miperfil" target="_blank">
+                        <i class="fab fa-snapchat"></i>
+                    </a>
+                    <a href="https://www.youtube.com/miperfil" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="http://www.pinterest.com/miperfil" target="_blank"><i class="fab fa-pinterest"></i></a>
+                        <a href="http://www.twitter.com/miperfil" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
